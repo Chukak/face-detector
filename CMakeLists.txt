@@ -1,4 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(first-opencv)
-add_executable(${PROJECT_NAME} "main.cpp")
+project(face_detector)
+set(CXX_STANDARD 17)
+set(CXX_STANDARD_REQUIRED ON)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+file(GLOB SOURCES "${PROJECT_SOURCE_DIR}/*.cpp")
+file(GLOB HEADERS "${PROJECT_SOURCE_DIR}/*.hpp")
+
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
